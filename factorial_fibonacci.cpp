@@ -48,12 +48,14 @@ int main(void) {
             printf("This is a child process :)\n");
             printf("I count %d fibonacci number\n", n);
             printf("It is %d\n", fibonacci(n));
+            exit(0);
             break;
         
         default:
             printf("This is a parent process $)\n");
             printf("I will count a factorial from %d\n", n);
             printf("It is %d\n", factorial(n));
+            return 0;
 
     }
 
