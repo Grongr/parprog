@@ -25,8 +25,8 @@ void* func(void* value) {
 
 int main() {
 
-    int n;
-    scanf("%d", &n);
+    size_t n;
+    scanf("%ld", &n);
 
     int* arr;
     arr = (int*)calloc(n, sizeof(int));

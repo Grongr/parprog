@@ -21,15 +21,8 @@ void* dex(void* value) {
     return 0;
 }
 
-int main() {
+void solvetion(double* vecs, int n, pthread_t* thid, int m) {
 
-    int n;
-    scanf("%d", &n);
-
-    double* vecs = (double*)calloc(n * 2, sizeof(double));
-
-    pthread_t* thid = (pthread_t*)calloc(n, sizeof(pthread_t));
-    
     for (int i = 0; i < n * 2; i += 2)
         scanf("%lg", vecs + i);
 
@@ -53,5 +46,23 @@ int main() {
 
     printf("The result is: %8.8lg\n", result);
 
+}
+
+int main() {
+
+    size_t n;
+    scanf("%ld", &n);
+
+    size_t m;
+    scanf("%ld", &m);
+
+    if (m > 8)
+        m = 8;
+
+    double* vecs = (double*)calloc(n * 2, sizeof(double));
+
+    pthread_t* thid = (pthread_t*)calloc(m, sizeof(pthread_t));
+    
+    
     return 0;
 }
