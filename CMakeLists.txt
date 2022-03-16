@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(parprog_problems VERSION 1.0 LANGUAGES CXX)
 
-set(COMP_FLAGS "-pthread -l -Wall -Werror -Wfloat-equal -Wsign-conversion -Warray-bounds -Wdiv-by-zero -Wdouble-promotion -g3 -o0")
+set(COMP_FLAGS "-pthread -l -Wall -Werror -Wfloat-equal
+                -Wsign-conversion -Warray-bounds -Wdiv-by-zero
+                -Wdouble-promotion -g3 -o0")
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
