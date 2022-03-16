@@ -49,7 +49,7 @@ void* dex(void* value) {
 
     pthread_mutex_lock(&mut);
 
-    size_t i = v->step_id * v->step;
+    size_t i;
     for (i = v->step_id * v->step; i < (v->step_id + 1) * v->step; ++i)
         v->result += v->vec1[i] * v->vec2[i];
 
