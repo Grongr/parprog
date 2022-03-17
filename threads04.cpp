@@ -77,7 +77,7 @@ void solvetion(Vectors* vecs, pthread_t* thid, size_t m) {
 
         /* dex( (void*)vecs ); */
 
-        int err = pthread_create(&thid[vecs->step_id], NULL, dex, (void*)vecs);
+        int err = pthread_create(&thid[i], NULL, dex, (void*)vecs);
 
         if (err) {
 
@@ -98,7 +98,7 @@ int main() {
     size_t m;
     scanf("%ld", &m);
 
-    if (m > 8)
+    if (m > MAXIMUM_THREADS_COUNT)
         m = MAXIMUM_THREADS_COUNT;
 
     if (m > n)
