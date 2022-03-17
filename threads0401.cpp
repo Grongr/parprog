@@ -8,8 +8,6 @@
 
 #define MAXIMUM_THREADS_COUNT 8
 
-pthread_mutex_t mut;
-
 typedef struct Vectors {
 
     double* vec1;
