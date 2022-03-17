@@ -9,7 +9,6 @@
 #define MAXIMUM_THREADS_COUNT 8
 
 pthread_mutex_t mut;
-/* double result = 0; */
 
 typedef struct Vectors {
 
@@ -133,8 +132,6 @@ void* dex(void* value) {
 
     for (int i = 0; i < vecs->size; ++i)
         *result += vecs->vec1[i] * vecs->vec2[i];
-        /* result += vecs->vec1[i] * vecs->vec2[i]; */
 
-    /* return 0; */
     return (void*)result;
 }
