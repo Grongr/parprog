@@ -17,6 +17,7 @@ int summator = 0;
 
 pthread_mutex_t pmut;
 pthread_cond_t  pcond;
+pthread_cond_t  ccond;
 
 typedef struct array {
 
@@ -70,19 +71,22 @@ void* producer_routine(void* value) {
 
     array* arr = (array*)value;
 
+    int i = 0;
     for (int i = 0; i < arr->size; ++i) {
 
         pthread_mutex_lock(&pmut);
 
         summator = arr->nums[i];
 
+        ++actual_size;
+
         pthread_mutex_unlock(&pmut);
         
         pthread_cond_signal(&pcond);
+
+        sleep(1);
     }
 
-    printf("1\n");
-    summator = 0;
     pthread_cond_broadcast(&pcond);
 
     return NULL;
@@ -97,15 +101,11 @@ void* consumer_routine(void* value) {
 
     pthread_mutex_lock(&pmut);
 
-    printf("2\n");
-        
-    while (actual_size + 1 < result_size) {
+    while (actual_size < result_size) {
 
         pthread_cond_wait(&pcond, &pmut);
 
         *result += summator;
-
-        ++actual_size;
     }
 
     pthread_mutex_unlock(&pmut);
@@ -118,10 +118,6 @@ int run_threads(array* arr) {
     pthread_mutex_init(&pmut, NULL);
     pthread_cond_init(&pcond, NULL);
 
-    pthread_t producer;
-    if (pthread_create(&producer, NULL, producer_routine, (void*)arr))
-        perror("Producer thread error!!!\n");
-
     pthread_t* consumers;
     consumers = (pthread_t*)calloc(n, sizeof(pthread_t));
 
@@ -130,6 +126,11 @@ int run_threads(array* arr) {
         if (pthread_create(&consumers[i], NULL, consumer_routine, NULL))
             perror("Consumer thread error!!!\n");
     }
+
+    pthread_t producer;
+    if (pthread_create(&producer, NULL, producer_routine, (void*)arr))
+        perror("Producer thread error!!!\n");
+
 
     int result = 0;
     void* results;
