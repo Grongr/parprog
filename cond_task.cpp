@@ -74,6 +74,8 @@ void* producer_routine(void* value) {
     int i = 0;
     for (int i = 0; i < arr->size; ++i) {
 
+        printf("i : %d actual size : %ld\n", i, actual_size);
+
         pthread_mutex_lock(&pmut);
 
         summator = arr->nums[i];
